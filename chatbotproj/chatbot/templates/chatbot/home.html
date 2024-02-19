@@ -4,26 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chatbot</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div id="chatbox"></div>
-    <input type="text" id="user_input" />
-    <button onclick="sendMessage()">Send</button>
+  <body class="bg-gray-100 h-screen flex flex-col justify-between">
+    <div id="chatbox" class="p-4 flex-1 overflow-auto"></div>
+    <div class="flex p-4">
+      <input
+        type="text"
+        id="user_input"
+        class="flex-1 border-gray-300 border rounded-l py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+      />
+      <button
+        id="send_button"
+        onclick="sendMessage()"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring focus:border-blue-300"
+      >
+        Send
+      </button>
+    </div>
 
     <script>
       function sendMessage() {
         var userMessage = document.getElementById("user_input").value;
         var chatbox = document.getElementById("chatbox");
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/get_response/?message=" + userMessage, true);
-        xhr.onload = function () {
-          var response = JSON.parse(xhr.responseText).response;
-          var chatMessage = document.createElement("p");
-          chatMessage.textContent = "Bot: " + response;
-          chatbox.appendChild(chatMessage);
-        };
-        xhr.send();
+        fetch("/get_response/?message=" + userMessage)
+          .then((response) => response.json())
+          .then((data) => {
+            var response = data.response;
+            var chatMessage = document.createElement("p");
+            chatMessage.textContent = "Bot: " + response;
+            chatMessage.classList.add(
+              "p-2",
+              "mb-2",
+              "bg-green-200",
+              "rounded-md"
+            );
+            chatbox.appendChild(chatMessage);
+            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to bottom
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+        // Clear input field after sending message
+        document.getElementById("user_input").value = "";
       }
     </script>
   </body>
