@@ -14,6 +14,11 @@ def train_chatbot(chatbot):
     trainer = ChatterBotCorpusTrainer(chatbot)
     for corpus_file in CORPUS_FILES:
         trainer.train(corpus_file)
+        
+    trainer.train(
+        "chatterbot.corpus.english.greetings",
+        "chatterbot.corpus.english.conversations"
+    )
 
     
     
