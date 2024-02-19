@@ -10,7 +10,7 @@
     />
   </head>
   <body class="bg-gray-100 h-screen flex flex-col justify-between">
-    <div id="chatbox" class="p-4 flex-1 overflow-auto"></div>
+    <div id="chatbox" class="p-4 flex-1 overflow-auto flex flex-col"></div>
     <div class="flex p-4">
       <input
         type="text"
@@ -31,19 +31,39 @@
         var userMessage = document.getElementById("user_input").value;
         var chatbox = document.getElementById("chatbox");
 
+        // Display user question in a text bubble
+        var userQuestionElement = document.createElement("p");
+        userQuestionElement.textContent = userMessage;
+        userQuestionElement.classList.add(
+          "rounded-lg",
+          "bg-blue-500",
+          "text-white",
+          "py-2",
+          "px-4",
+          "my-2",
+          "max-w-3/4",
+          "ml-auto"
+        );
+        chatbox.appendChild(userQuestionElement);
+
         fetch("/get_response/?message=" + userMessage)
           .then((response) => response.json())
           .then((data) => {
             var response = data.response;
-            var chatMessage = document.createElement("p");
-            chatMessage.textContent = "Bot: " + response;
-            chatMessage.classList.add(
-              "p-2",
-              "mb-2",
-              "bg-green-200",
-              "rounded-md"
+            // Display bot response in a text bubble
+            var botResponseElement = document.createElement("p");
+            botResponseElement.textContent = response;
+            botResponseElement.classList.add(
+              "rounded-lg",
+              "bg-green-500",
+              "text-white",
+              "py-2",
+              "px-4",
+              "my-2",
+              "max-w-3/4",
+              "mr-auto"
             );
-            chatbox.appendChild(chatMessage);
+            chatbox.appendChild(botResponseElement);
             chatbox.scrollTop = chatbox.scrollHeight; // Scroll to bottom
           })
           .catch((error) => {
