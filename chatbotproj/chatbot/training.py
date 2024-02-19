@@ -6,8 +6,8 @@ from .chatbot_instance import chatbot
 def train_chatbot(chatbot):
     # Paths to the training corpora
     CORPUS_FILES = [
-        'chatbot/corpora/cayenta_corpus.yml',
-        'chatbot/corpora/harris_computer_corpus.yml'
+        'chatbot/corpora/company_y.yml',
+        'chatbot/corpora/company_x.yml'
     ]
 
     # Create a trainer and train the chatbot
