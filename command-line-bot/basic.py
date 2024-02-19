@@ -3,7 +3,7 @@ from chatterbot.trainers import ListTrainer
 from chatterbot.trainers import ChatterBotCorpusTrainer
 from math_logic import MathLogicAdapter
 
-chatbot = ChatBot("Botty", logic_adapters=[
+chatbot = ChatBot("Botty", logic_adapters=["chatterbot.logic.MathematicalEvaluation",
         {'import_path': 'math_logic.MathLogicAdapter'},
         {'import_path': 'chatterbot.logic.BestMatch'}
         ])

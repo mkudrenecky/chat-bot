@@ -11,22 +11,21 @@ class MathLogicAdapter(LogicAdapter):
         super().__init__(chatbot, **kwargs)
 
     def can_process(self, statement):
-        # Check if the statement contains both an English question and a mathematical operation
-        return re.search(r'\b[A-Za-z]+\b.*(\d+\s*[\+\-\*/]\s*\d+)\b', statement.text)
+        # Check if the statement contains a mathematical operation
+        return re.search(r'\b\d+\s*[\+\-\*/]\s*\d+\b', statement.text)
 
     def process(self, input_statement, additional_response_selection_parameters):
-        # Extract English question and mathematical expression from the input statement
-        match = re.search(r'\b([A-Za-z]+)\b(.*)(\d+\s*[\+\-\*/]\s*\d+)\b', input_statement.text)
+        # Extract mathematical expression from the input statement
+        match = re.search(r'(\d+\s*[\+\-\*/]\s*\d+)\b', input_statement.text)
         
         if match:
-            question = match.group(1).strip()
-            expression = match.group(3).strip()
+            expression = match.group(1).strip()
 
             try:
                 # Evaluate the mathematical expression
                 result = eval(expression)
 
-                # Construct the response statement with the original question and the evaluated expression
+                # Construct the response statement with the evaluated expression
                 response_text = f"{expression} is {result}"
                 selected_statement = Statement(text=response_text)
                 selected_statement.confidence = 1.0  # Set confidence to 1 since it's a mathematical operation
