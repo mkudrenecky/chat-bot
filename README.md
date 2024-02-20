@@ -2,7 +2,7 @@
 An ongoing implementation of a command line and web-based chat bot.
 
 ## Details
-This project leverages ChatterBot coupled with customized training corpus to create a web-based chat bot. ChatterBot is a Python library that allows developers to create chatbots. It works by utilizing a combination of natural language processing (NLP) techniques and machine learning algorithms to understand and respond to user input in a conversational manner.
+This project leverages ChatterBot coupled with a customized training corpus to create a web-based chat bot. ChatterBot is a Python library that allows developers to create chatbots. It works by utilizing a combination of natural language processing (NLP) techniques and machine learning algorithms to understand and respond to user input in a conversational manner.
 
 ## Demo
 Current MVP
@@ -13,7 +13,7 @@ Current MVP
 - [ ] Continue training! Learn to customize the bot for specific use cases, get a better understanding of the underlying functionality to enhance the bot
 - [ ] Explore building custom search algorithms to compare performance to the API
 - [ ] Measure Accuracy, Precision and Recall, F1 score
-- [ ] Levrage the chat bot for practical applications 
+- [ ] Utilize the chat bot for practical applications 
 
 ## Tech Stack
 ![](https://skills.thijs.gg/icons?i=python,django,js,html,tailwind)
