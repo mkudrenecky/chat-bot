@@ -8,8 +8,8 @@ chatbot = ChatBot("Botty", logic_adapters=["chatterbot.logic.MathematicalEvaluat
         {'import_path': 'chatterbot.logic.BestMatch'}
         ])
 
-CORPUS_FILE = 'cayenta_corpus'
-HARRIS_CORPUS = 'harris_computer_corpus'
+CORPUS_FILE = 'company_x'
+HARRIS_CORPUS = 'company_y'
 
 trainer = ChatterBotCorpusTrainer(chatbot)
 trainer.train(
